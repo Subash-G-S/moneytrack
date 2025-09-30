@@ -62,7 +62,7 @@ export const TransactionList = ({ transactions }: TransactionListProps) => {
               ? 'text-income' 
               : 'text-expense'
           }`}>
-            {transaction.type === 'income' ? '+' : '-'}${transaction.amount.toLocaleString()}
+            {transaction.type === 'income' ? '+' : '-'}₹{transaction.amount.toLocaleString()}
           </div>
         </div>
       ))}
