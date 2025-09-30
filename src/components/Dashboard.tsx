@@ -36,7 +36,7 @@ export const Dashboard = ({
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold text-income">
-              ${totalIncome.toLocaleString()}
+              ₹{totalIncome.toLocaleString()}
             </div>
             <p className="text-xs text-muted-foreground mt-1">+12% from last month</p>
           </CardContent>
@@ -51,7 +51,7 @@ export const Dashboard = ({
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold text-expense">
-              ${totalExpenses.toLocaleString()}
+              ₹{totalExpenses.toLocaleString()}
             </div>
             <p className="text-xs text-muted-foreground mt-1">+8% from last month</p>
           </CardContent>
@@ -70,7 +70,7 @@ export const Dashboard = ({
                 balance >= 0 ? "text-income" : "text-expense"
               }`}
             >
-              ${balance.toLocaleString()}
+              ₹{balance.toLocaleString()}
             </div>
             <p className="text-xs text-muted-foreground mt-1">Current balance</p>
           </CardContent>
