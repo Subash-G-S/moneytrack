@@ -8,6 +8,7 @@ import { useToast } from "@/hooks/use-toast";
 import { useAuth } from "@/hooks/use-auth";
 import { Button } from "@/components/ui/button";
 import { db } from "@/lib/firebase";
+
 import {
   addDoc,
   collection,
@@ -69,6 +70,26 @@ const Index = () => {
     });
     return () => unsub();
   }, [user]);
+  const toggleTheme = () => {
+  const root = document.documentElement;
+  if (root.classList.contains("dark")) {
+    root.classList.remove("dark");
+    localStorage.setItem("theme", "light");
+  } else {
+    root.classList.add("dark");
+    localStorage.setItem("theme", "dark");
+  }
+};
+const [isDark, setIsDark] = useState(false);
+
+useEffect(() => {
+  if (localStorage.getItem("theme") === "dark") {
+    document.documentElement.classList.add("dark");
+    setIsDark(true);
+  }
+}, []);
+
+
 
   // Add transaction
   const handleAddTransaction = async (
@@ -89,6 +110,20 @@ const Index = () => {
       } of $${newTransaction.amount} has been recorded.`,
     });
   };
+useEffect(() => {
+  const savedTheme = localStorage.getItem("theme");
+  if (savedTheme === "dark") {
+    document.documentElement.classList.add("dark");
+  } else {
+    document.documentElement.classList.remove("dark");
+  }
+}, []);
+useEffect(() => {
+  if (localStorage.getItem("theme") === "dark") {
+    document.documentElement.classList.add("dark");
+  }
+}, []);
+
 
   // Calculate totals
   const totalIncome = transactions
@@ -123,7 +158,7 @@ const Index = () => {
         </div>
       </div>
 
-      {/* Balance & Button */}
+      {/* Balance, Toggle & Sign Out */}
       <div className="flex items-center justify-between sm:justify-end gap-3 text-sm text-muted-foreground">
         <span>
           Balance:{" "}
@@ -131,6 +166,28 @@ const Index = () => {
             ₹{balance.toLocaleString()}
           </span>
         </span>
+
+        {/* 🌙☀️ Simple Dark/Light toggle */}
+        <button
+  onClick={() => {
+    const root = document.documentElement;
+    if (isDark) {
+      root.classList.remove("dark");
+      localStorage.setItem("theme", "light");
+      setIsDark(false);
+    } else {
+      root.classList.add("dark");
+      localStorage.setItem("theme", "dark");
+      setIsDark(true);
+    }
+  }}
+  className="p-2 rounded bg-secondary text-secondary-foreground hover:bg-secondary/80"
+  aria-label="Toggle theme"
+>
+  {isDark ? "🌙" : "☀️"}
+</button>
+
+
         <Button variant="outline" size="sm" onClick={logout}>
           Sign out
         </Button>
@@ -138,6 +195,8 @@ const Index = () => {
     </div>
   </div>
 </header>
+
+
 
 
       {/* Main */}
