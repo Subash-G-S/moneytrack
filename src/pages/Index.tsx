@@ -109,37 +109,36 @@ const Index = () => {
     <div className="min-h-screen bg-background">
       {/* Header */}
       <header className="border-b border-border bg-card/50 backdrop-blur-sm sticky top-0 z-50">
-        <div className="container mx-auto px-4 py-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <div className="p-2 rounded-lg bg-primary text-primary-foreground">
-                <PiggyBank className="h-6 w-6" />
-              </div>
-              <div>
-                <h1 className="text-xl font-bold text-foreground">
-                  ExpenseTracker
-                </h1>
-                <p className="text-sm text-muted-foreground">
-                  Manage your finances
-                </p>
-              </div>
-            </div>
-            <div className="flex items-center gap-4 text-sm text-muted-foreground">
-              Balance:{" "}
-              <span
-                className={`font-semibold ${
-                  balance >= 0 ? "text-income" : "text-expense"
-                }`}
-              >
-                ${balance.toLocaleString()}
-              </span>
-              <Button variant="outline" size="sm" onClick={logout}>
-                Sign out
-              </Button>
-            </div>
-          </div>
+  <div className="container mx-auto px-3 sm:px-4 py-3 sm:py-4">
+    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+      
+      {/* Logo & Title */}
+      <div className="flex items-center gap-2">
+        <div className="p-2 rounded-lg bg-primary text-primary-foreground">
+          <PiggyBank className="h-6 w-6" />
         </div>
-      </header>
+        <div>
+          <h1 className="text-lg sm:text-xl font-bold text-foreground">MoneyTracker</h1>
+          <p className="text-xs sm:text-sm text-muted-foreground">Manage your finances</p>
+        </div>
+      </div>
+
+      {/* Balance & Button */}
+      <div className="flex items-center justify-between sm:justify-end gap-3 text-sm text-muted-foreground">
+        <span>
+          Balance:{" "}
+          <span className={`font-semibold ${balance >= 0 ? "text-income" : "text-expense"}`}>
+            ₹{balance.toLocaleString()}
+          </span>
+        </span>
+        <Button variant="outline" size="sm" onClick={logout}>
+          Sign out
+        </Button>
+      </div>
+    </div>
+  </div>
+</header>
+
 
       {/* Main */}
       <main className="container mx-auto px-4 py-8">
