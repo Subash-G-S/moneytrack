@@ -89,9 +89,9 @@ export const Reports = ({ transactions }: ReportsProps) => {
     doc.setFontSize(14);
     doc.text("Summary", 20, 65);
     doc.setFontSize(12);
-    doc.text(`Total Income: $${totalIncome.toLocaleString()}`, 20, 80);
-    doc.text(`Total Expenses: $${totalExpenses.toLocaleString()}`, 20, 90);
-    doc.text(`Net Balance: $${netBalance.toLocaleString()}`, 20, 100);
+    doc.text(`Total Income: ₹${totalIncome.toLocaleString()}`, 20, 80);
+    doc.text(`Total Expenses: ₹${totalExpenses.toLocaleString()}`, 20, 90);
+    doc.text(`Net Balance: ₹${netBalance.toLocaleString()}`, 20, 100);
 
     // Transactions table
     const tableData = filteredTransactions.map((t) => [
@@ -99,7 +99,7 @@ export const Reports = ({ transactions }: ReportsProps) => {
       t.type.charAt(0).toUpperCase() + t.type.slice(1),
       t.category,
       t.description,
-      `$${t.amount.toLocaleString()}`,
+      `₹${t.amount.toLocaleString()}`,
     ]);
 
     autoTable(doc, {
@@ -232,7 +232,7 @@ export const Reports = ({ transactions }: ReportsProps) => {
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold text-income">
-              ${totalIncome.toLocaleString()}
+              ₹{totalIncome.toLocaleString()}
             </div>
           </CardContent>
         </Card>
@@ -245,7 +245,7 @@ export const Reports = ({ transactions }: ReportsProps) => {
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold text-expense">
-              ${totalExpenses.toLocaleString()}
+              ₹{totalExpenses.toLocaleString()}
             </div>
           </CardContent>
         </Card>
@@ -262,7 +262,7 @@ export const Reports = ({ transactions }: ReportsProps) => {
                 netBalance >= 0 ? "text-income" : "text-expense"
               }`}
             >
-              ${netBalance.toLocaleString()}
+              ₹{netBalance.toLocaleString()}
             </div>
           </CardContent>
         </Card>
@@ -303,7 +303,7 @@ export const Reports = ({ transactions }: ReportsProps) => {
                         : "text-expense"
                     }`}
                   >
-                    {transaction.type === "income" ? "+" : "-"}$
+                    {transaction.type === "income" ? "+" : "-"}₹
                     {transaction.amount.toLocaleString()}
                   </div>
                 </div>
