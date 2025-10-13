@@ -37,9 +37,10 @@ interface ReportsProps {
 export const Reports = ({ transactions }: ReportsProps) => {
   const [startDate, setStartDate] = useState<Date>();
   const [endDate, setEndDate] = useState<Date>();
-  const [filterType, setFilterType] = useState<
-    "all" | "income" | "expense"
-  >("all");
+  const [filterCategory, setFilterCategory] = useState<string>("all");
+
+  // Extract unique categories
+  const categories = ["all", ...new Set(transactions.map((t) => t.category))];
 
   // Filter transactions
   const filteredTransactions = transactions.filter((transaction) => {
@@ -47,9 +48,10 @@ export const Reports = ({ transactions }: ReportsProps) => {
     const matchesDateRange =
       (!startDate || transactionDate >= startDate) &&
       (!endDate || transactionDate <= endDate);
-    const matchesType =
-      filterType === "all" || transaction.type === filterType;
-    return matchesDateRange && matchesType;
+    const matchesCategory =
+      filterCategory === "all" || transaction.category === filterCategory;
+
+    return matchesDateRange && matchesCategory;
   });
 
   // Totals
@@ -78,8 +80,10 @@ export const Reports = ({ transactions }: ReportsProps) => {
     doc.setFontSize(12);
     doc.text(`Period: ${dateRange}`, 20, 35);
     doc.text(
-      `Filter: ${
-        filterType.charAt(0).toUpperCase() + filterType.slice(1)
+      `Category: ${
+        filterCategory === "all"
+          ? "All Categories"
+          : filterCategory.charAt(0).toUpperCase() + filterCategory.slice(1)
       }`,
       20,
       45
@@ -110,11 +114,7 @@ export const Reports = ({ transactions }: ReportsProps) => {
       headStyles: { fillColor: [34, 197, 94] },
     });
 
-    // Save the PDF
-    const fileName = `financial-report-${format(
-      new Date(),
-      "yyyy-MM-dd"
-    )}.pdf`;
+    const fileName = `financial-report-${format(new Date(), "yyyy-MM-dd")}.pdf`;
     doc.save(fileName);
   };
 
@@ -186,22 +186,22 @@ export const Reports = ({ transactions }: ReportsProps) => {
               </Popover>
             </div>
 
-            {/* Type Filter */}
+            {/* Category Filter */}
             <div className="space-y-2">
-              <Label>Transaction Type</Label>
+              <Label>Category</Label>
               <Select
-                value={filterType}
-                onValueChange={(
-                  value: "all" | "income" | "expense"
-                ) => setFilterType(value)}
+                value={filterCategory}
+                onValueChange={setFilterCategory}
               >
                 <SelectTrigger>
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="all">All Transactions</SelectItem>
-                  <SelectItem value="income">Income Only</SelectItem>
-                  <SelectItem value="expense">Expenses Only</SelectItem>
+                  {categories.map((category) => (
+                    <SelectItem key={category} value={category}>
+                      {category === "all" ? "All Categories" : category}
+                    </SelectItem>
+                  ))}
                 </SelectContent>
               </Select>
             </div>
