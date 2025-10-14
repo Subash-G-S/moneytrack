@@ -4,6 +4,8 @@ import { Dashboard } from "@/components/Dashboard";
 import { AddTransactionForm } from "@/components/AddTransactionForm";
 import { History } from "@/components/History";
 import { Reports } from "@/components/Reports";
+import { Calculator } from "@/components/Calculator";
+import { Calculator as CalculatorIcon } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { useAuth } from "@/hooks/use-auth";
 import { Button } from "@/components/ui/button";
@@ -206,15 +208,15 @@ useEffect(() => {
           onValueChange={setActiveTab}
           className="w-full"
         >
-          <TabsList className="grid w-full grid-cols-4 mb-8">
+          <TabsList className="grid w-full grid-cols-5 mb-8">
+
             <TabsTrigger value="dashboard" className="flex items-center gap-2">
               <LayoutDashboard className="h-4 w-4" />
               <span className="hidden sm:inline">Dashboard</span>
             </TabsTrigger>
             <TabsTrigger
               value="add-transaction"
-              className="flex items-center gap-2"
-            >
+              className="flex items-center gap-2">
               <Plus className="h-4 w-4" />
               <span className="hidden sm:inline">Add Transaction</span>
             </TabsTrigger>
@@ -225,6 +227,10 @@ useEffect(() => {
             <TabsTrigger value="reports" className="flex items-center gap-2">
               <FileText className="h-4 w-4" />
               <span className="hidden sm:inline">Reports</span>
+            </TabsTrigger>
+            <TabsTrigger value="calculator" className="flex items-center gap-2">
+              <CalculatorIcon className="h-4 w-4" />
+              <span className="hidden sm:inline">Calculator</span>
             </TabsTrigger>
           </TabsList>
 
@@ -250,6 +256,12 @@ useEffect(() => {
           <TabsContent value="reports">
             <Reports transactions={transactions} />
           </TabsContent>
+          <TabsContent value="calculator">
+            <div className="max-w-2xl mx-auto">
+              <Calculator />
+            </div>
+          </TabsContent>
+
         </Tabs>
       </main>
     </div>
