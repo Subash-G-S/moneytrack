@@ -42,7 +42,6 @@ export const Calculator = () => {
         <Input
           value={expression}
           onChange={(e) => setExpression(e.target.value)}
-          placeholder="Enter expression (e.g., 1200+450*2)"
           className="text-lg font-medium"
         />
         <div className="grid grid-cols-4 gap-2">
