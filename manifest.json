@@ -47,8 +47,5 @@
   "categories": ["income", "expense", "money", "financial"],
   "lang": "en",
   "dir": "ltr",
-  "scope_extensions": [
-    { "origin": "https://geesaran.vercel.app" }
-  ],
   "iarc_rating_id": "pending"
 }
