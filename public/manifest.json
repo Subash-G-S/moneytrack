@@ -17,17 +17,20 @@
     {
       "src": "/moneylogo180x180.png",
       "sizes": "64x64 32x32 24x24 16x16",
-      "type": "image/x-icon"
+      "type": "image/x-icon",
+      "purpose": "any maskable"
     },
     {
       "src": "/moneylogo180x180.png",
       "type": "image/png",
-      "sizes": "180x180"
+      "sizes": "180x180",
+      "purpose":"any maskable"
     },
     {
       "src": "/moneylogo180x180.png",
       "type": "image/png",
-      "sizes": "512x512"
+      "sizes": "512x512",
+      "purpose":"any maskable"
     }
   ],
 
