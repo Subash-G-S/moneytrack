@@ -155,7 +155,7 @@ useEffect(() => {
           <PiggyBank className="h-6 w-6" />
         </div>
         <div>
-          <h1 className="text-lg sm:text-xl font-bold text-foreground">MoneyTracker</h1>
+          <h1 className="text-lg sm:text-xl font-bold text-foreground">FinTrack</h1>
           <p className="text-xs sm:text-sm text-muted-foreground">Manage your finances</p>
         </div>
       </div>
