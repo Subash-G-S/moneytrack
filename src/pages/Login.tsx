@@ -111,8 +111,8 @@ export default function Login() {
       <Card className="w-full max-w-md shadow-lg border border-border bg-card">
         <CardHeader className="text-center">
           <div className="flex justify-center mb-3">
-            <div className="p-3 rounded-full bg-primary text-primary-foreground">
-              <PiggyBank className="h-8 w-8" />
+            <div className="p-3 rounded-full text-primary-foreground">
+              <img src="/moneylogo180x180.png" className="h-8 w-8"></img>
             </div>
           </div>
           <CardTitle className="text-2xl font-bold text-foreground">
