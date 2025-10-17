@@ -151,8 +151,8 @@ useEffect(() => {
       
       {/* Logo & Title */}
       <div className="flex items-center gap-2">
-        <div className="p-2 rounded-lg bg-primary text-primary-foreground">
-          <PiggyBank className="h-6 w-6" />
+        <div className="p-2 rounded-lg text-primary-foreground">
+          <img src="/moneylogo180x180.png" className="h-6 w-6"></img>
         </div>
         <div>
           <h1 className="text-lg sm:text-xl font-bold text-foreground">FinTrack</h1>
