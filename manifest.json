@@ -35,7 +35,6 @@
   "scope" : "/",
   "display": "standalone",
   "display_override": [
-    "browser",
     "fullscreen",
     "minimal-ui",
     "window-controls-overlay",
