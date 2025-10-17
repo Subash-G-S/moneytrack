@@ -3,7 +3,7 @@
 // ----------------------------
 
 // ⚙️ Versioned cache name
-const CACHE_NAME = "fintrack-cache-v3"; // increase version when you redeploy
+const CACHE_NAME = "fintrack-cache-v4"; // increase version when you redeploy
 const OFFLINE_URL = "/offline.html";
 
 // ✅ Precache core assets during install
