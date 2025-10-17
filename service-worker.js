@@ -16,7 +16,7 @@ self.addEventListener("install", (event) => {
         OFFLINE_URL, // offline fallback
         "/manifest.json", // manifest
         "/moneylogo.png", // icons
-        "/moneylogo.png.png"
+        "/moneylogo.png"
       ]);
     })
   );
