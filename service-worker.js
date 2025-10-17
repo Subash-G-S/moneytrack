@@ -14,9 +14,9 @@ self.addEventListener("install", (event) => {
       return cache.addAll([
         "/", // homepage
         OFFLINE_URL, // offline fallback
-        "manifest.json", // manifest
-        "moneylogo.png", // icons
-        "moneylogo.png.png"
+        "/manifest.json", // manifest
+        "/moneylogo.png", // icons
+        "/moneylogo.png.png"
       ]);
     })
   );
