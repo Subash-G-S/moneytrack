@@ -7,7 +7,7 @@
     <link rel="icon" type="image/png" href="moneylogo.png" />
     <meta name="theme-color" content="#0b5ed7">
     <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="moneylogo.png" />
-    <link rel="manifest" href="manifest.json" />
+    <link rel="manifest" href="/manifest.json" />
     <meta name="description" content="Track your income and expenses effortlessly with our responsive web app. Mobile-friendly personal finance management with beautiful charts and insights." />
     <meta name="author" content="ExpenseTracker" />
     <meta name="keywords" content="expense tracker, income tracker, personal finance, budget management, financial planning" />
@@ -15,9 +15,6 @@
     <meta property="og:title" content="ExpenseTracker - Smart Income & Expense Management" />
     <meta property="og:description" content="Track your income and expenses effortlessly with our responsive web app. Mobile-friendly personal finance management with beautiful charts and insights." />
     <meta property="og:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
-
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
   </head>
 
   <body>
@@ -27,7 +24,7 @@
   // Register service worker
   if ('serviceWorker' in navigator) {
     navigator.serviceWorker
-      .register('service-worker.js')
+      .register('/service-worker.js')
       .then(() => console.log('✅ Service Worker registered'))
       .catch((err) => console.log('❌ SW registration failed:', err));
   }
@@ -42,7 +39,7 @@
 
     if (isMobile) {
       const installBtn = document.createElement('button');
-      installBtn.textContent = '📱 Install Ahaar App';
+      installBtn.textContent = '📱 Install FinTrack App';
       installBtn.style.position = 'fixed';
       installBtn.style.bottom = '50px';
       installBtn.style.left = '50%';
