@@ -21,6 +21,12 @@
       "purpose":"any maskable"
     },
     {
+      "src": "/moneylogo180x180.png",
+      "type": "image/png",
+      "sizes": "192x192",
+      "purpose":"any maskable"
+    },
+    {
       "src": "/moneylogo510x510.png",
       "type": "image/png",
       "sizes": "510x510",
