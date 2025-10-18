@@ -1,7 +1,3 @@
-// ----------------------------
-// Ahaar Amrita PWA Service Worker
-// ----------------------------
-
 // ⚙️ Versioned cache name
 const CACHE_NAME = "fintrack-cache-v4"; // increase version when you redeploy
 const OFFLINE_URL = "/offline.html";
