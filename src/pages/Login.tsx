@@ -71,7 +71,7 @@ export default function Login() {
 
         // ✉️ Send verification email
         await sendEmailVerification(user);
-        setMessage("Account created! A verification link has been sent to your email. Please verify before signing in.Check in your spam folders.");
+        setMessage("Account created! A verification link has been sent to your email. Please verify before signing in. Check in your spam folders.");
         setMode("login");
 
       // 🔹 FORGOT PASSWORD
