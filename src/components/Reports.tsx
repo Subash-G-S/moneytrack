@@ -154,7 +154,7 @@ export const Reports = ({ transactions }: ReportsProps) => {
                   </Button>
                 </PopoverTrigger>
                 <PopoverContent align="start">
-                  <Calendar selected={startDate} onSelect={setStartDate} />
+                  <Calendar mode="single" selected={startDate} onSelect={setStartDate} initialFocus className="pointer-events-auto"/>
                 </PopoverContent>
               </Popover>
             </div>
@@ -176,7 +176,7 @@ export const Reports = ({ transactions }: ReportsProps) => {
                   </Button>
                 </PopoverTrigger>
                 <PopoverContent align="start">
-                  <Calendar selected={endDate} onSelect={setEndDate} />
+                  <Calendar mode="single" selected={endDate} onSelect={setEndDate} initialFocus className="pointer-events-auto" />
                 </PopoverContent>
               </Popover>
             </div>
