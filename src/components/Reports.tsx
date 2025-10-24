@@ -43,7 +43,7 @@ export const Reports = ({ transactions }: ReportsProps) => {
 
   const categories = ["all", ...new Set(transactions.map((t) => t.category))];
 
-  // ✅ Updated filtering including search
+  // ✅ filtering includes search now
   const filteredTransactions = transactions.filter((transaction) => {
     const transactionDate = new Date(transaction.date);
 
@@ -63,11 +63,11 @@ export const Reports = ({ transactions }: ReportsProps) => {
 
   const totalIncome = filteredTransactions
     .filter((t) => t.type === "income")
-    .reduce((a, b) => a + b.amount, 0);
+    .reduce((sum, t) => sum + t.amount, 0);
 
   const totalExpenses = filteredTransactions
     .filter((t) => t.type === "expense")
-    .reduce((a, b) => a + b.amount, 0);
+    .reduce((sum, t) => sum + t.amount, 0);
 
   const netBalance = totalIncome - totalExpenses;
 
@@ -85,7 +85,7 @@ export const Reports = ({ transactions }: ReportsProps) => {
     doc.text(
       `Category: ${
         filterCategory === "all"
-          ? "All Categories"
+          ? "All"
           : filterCategory.charAt(0).toUpperCase() + filterCategory.slice(1)
       }`,
       20,
@@ -101,7 +101,7 @@ export const Reports = ({ transactions }: ReportsProps) => {
         t.description,
         `₹${t.amount.toLocaleString()}`,
       ]),
-      startY: 55,
+      startY: 60,
     });
 
     doc.save(
@@ -114,21 +114,22 @@ export const Reports = ({ transactions }: ReportsProps) => {
       <Card className="bg-gradient-card border-border shadow-card">
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
-            <FileText className="h-5 w-5 text-primary" /> Report Filters
+            <FileText className="h-5 w-5 text-primary" />
+            Report Filters
           </CardTitle>
         </CardHeader>
 
         <CardContent>
-          {/* ✅ 5 Filters Row */}
+          {/* ✅ Added Search as First Filter */}
           <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
 
-            {/* 🔍 Search Filter */}
+            {/* 🔎 Search */}
             <div className="space-y-2">
               <Label>Search</Label>
               <div className="relative">
-                <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                 <Input
-                  placeholder="Search transactions..."
+                  placeholder="Search..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                   className="pl-10"
@@ -136,7 +137,7 @@ export const Reports = ({ transactions }: ReportsProps) => {
               </div>
             </div>
 
-            {/* 📅 Start Date */}
+            {/* Start Date */}
             <div className="space-y-2">
               <Label>Start Date</Label>
               <Popover>
@@ -144,12 +145,12 @@ export const Reports = ({ transactions }: ReportsProps) => {
                   <Button
                     variant="outline"
                     className={cn(
-                      "w-full justify-start text-left",
+                      "w-full justify-start text-left font-normal",
                       !startDate && "text-muted-foreground"
                     )}
                   >
                     <CalendarIcon className="mr-2 h-4 w-4" />
-                    {startDate ? format(startDate, "PPP") : "Select date"}
+                    {startDate ? format(startDate, "PPP") : "Pick date"}
                   </Button>
                 </PopoverTrigger>
                 <PopoverContent align="start">
@@ -158,7 +159,7 @@ export const Reports = ({ transactions }: ReportsProps) => {
               </Popover>
             </div>
 
-            {/* 📅 End Date */}
+            {/* End Date */}
             <div className="space-y-2">
               <Label>End Date</Label>
               <Popover>
@@ -166,12 +167,12 @@ export const Reports = ({ transactions }: ReportsProps) => {
                   <Button
                     variant="outline"
                     className={cn(
-                      "w-full justify-start text-left",
+                      "w-full justify-start text-left font-normal",
                       !endDate && "text-muted-foreground"
                     )}
                   >
                     <CalendarIcon className="mr-2 h-4 w-4" />
-                    {endDate ? format(endDate, "PPP") : "Select date"}
+                    {endDate ? format(endDate, "PPP") : "Pick date"}
                   </Button>
                 </PopoverTrigger>
                 <PopoverContent align="start">
@@ -180,7 +181,7 @@ export const Reports = ({ transactions }: ReportsProps) => {
               </Popover>
             </div>
 
-            {/* 🏷 Category Filter */}
+            {/* Category */}
             <div className="space-y-2">
               <Label>Category</Label>
               <Select value={filterCategory} onValueChange={setFilterCategory}>
@@ -188,24 +189,24 @@ export const Reports = ({ transactions }: ReportsProps) => {
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
-                  {categories.map((c) => (
-                    <SelectItem key={c} value={c}>
-                      {c === "all" ? "All Categories" : c}
+                  {categories.map((cat) => (
+                    <SelectItem key={cat} value={cat}>
+                      {cat === "all" ? "All" : cat}
                     </SelectItem>
                   ))}
                 </SelectContent>
               </Select>
             </div>
 
-            {/* 📄 PDF Download */}
+            {/* Export Button */}
             <div className="space-y-2">
               <Label>Export</Label>
               <Button
                 className="w-full"
-                disabled={filteredTransactions.length === 0}
                 onClick={generatePDF}
+                disabled={filteredTransactions.length === 0}
               >
-                <Download className="mr-2 h-4 w-4" /> PDF
+                <Download className="mr-2 h-4 w-4" /> Download
               </Button>
             </div>
 
@@ -213,42 +214,61 @@ export const Reports = ({ transactions }: ReportsProps) => {
         </CardContent>
       </Card>
 
-      {/* SUMMARY */}
+      {/* ✅ Below UI untouched */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <Card><CardHeader><CardTitle>Filtered Income</CardTitle></CardHeader>
-          <CardContent><div className="text-2xl text-green-600 font-bold">₹{totalIncome.toLocaleString()}</div></CardContent></Card>
+        {/* Same Summary Cards */}
+        <Card className="bg-gradient-card border-border shadow-card">
+          <CardHeader className="pb-2">
+            <CardTitle className="text-sm text-muted-foreground">Filtered Income</CardTitle>
+          </CardHeader>
+          <CardContent><div className="text-2xl font-bold text-income">₹{totalIncome.toLocaleString()}</div></CardContent>
+        </Card>
 
-        <Card><CardHeader><CardTitle>Filtered Expenses</CardTitle></CardHeader>
-          <CardContent><div className="text-2xl text-red-600 font-bold">₹{totalExpenses.toLocaleString()}</div></CardContent></Card>
+        <Card className="bg-gradient-card border-border shadow-card">
+          <CardHeader className="pb-2">
+            <CardTitle className="text-sm text-muted-foreground">Filtered Expenses</CardTitle>
+          </CardHeader>
+          <CardContent><div className="text-2xl font-bold text-expense">₹{totalExpenses.toLocaleString()}</div></CardContent>
+        </Card>
 
-        <Card><CardHeader><CardTitle>Net Balance</CardTitle></CardHeader>
-          <CardContent><div className="text-2xl font-bold">{netBalance >= 0 ? "✅" : "⚠️"} ₹{netBalance.toLocaleString()}</div></CardContent></Card>
+        <Card className="bg-gradient-card border-border shadow-card">
+          <CardHeader className="pb-2">
+            <CardTitle className="text-sm text-muted-foreground">Net Balance</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className={`text-2xl font-bold ${netBalance >= 0 ? "text-income" : "text-expense"}`}>
+              ₹{netBalance.toLocaleString()}
+            </div>
+          </CardContent>
+        </Card>
       </div>
 
-      {/* RESULTS LIST */}
-      <Card>
+      {/* Filtered Results List (Untouched UI) */}
+      <Card className="bg-gradient-card border-border shadow-card">
         <CardHeader>
           <CardTitle>Filtered Transactions ({filteredTransactions.length})</CardTitle>
         </CardHeader>
         <CardContent>
           {filteredTransactions.length === 0 ? (
-            <p className="text-center text-muted-foreground py-10">No matching results…</p>
+            <div className="text-center py-8 text-muted-foreground">
+              <p>No transactions found</p>
+            </div>
           ) : (
             <div className="space-y-2 max-h-96 overflow-y-auto">
-              {filteredTransactions.map((t) => (
+              {filteredTransactions.map((transaction) => (
                 <div
-                  key={t.id}
-                  className="flex justify-between p-3 rounded-lg bg-muted/10"
+                  key={transaction.id}
+                  className="flex items-center justify-between p-3 rounded-lg bg-muted/10 hover:bg-muted/20 transition-colors"
                 >
                   <div>
-                    <p className="font-medium">{t.description}</p>
-                    <p className="text-sm text-muted-foreground">
-                      {t.category} • {format(new Date(t.date), "MMM dd, yyyy")}
-                    </p>
+                    <div className="font-medium">{transaction.description}</div>
+                    <div className="text-sm text-muted-foreground">
+                      {transaction.category} • {format(new Date(transaction.date), "MMM dd, yyyy")}
+                    </div>
                   </div>
-                  <strong className={t.type === "income" ? "text-income" : "text-expense"}>
-                    {t.type === "income" ? "+" : "-"}₹{t.amount.toLocaleString()}
-                  </strong>
+                  <div className={`font-semibold ${transaction.type === "income" ? "text-income" : "text-expense"}`}>
+                    {transaction.type === "income" ? "+" : "-"}₹{transaction.amount.toLocaleString()}
+                  </div>
                 </div>
               ))}
             </div>
