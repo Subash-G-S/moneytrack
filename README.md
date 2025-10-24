@@ -2,6 +2,7 @@
 
 MoneyTracker is a **modern personal finance web app** built with React + TypeScript + Firebase.  
 It allows users to **track income, expenses, generate reports, view transaction history, and use an integrated calculator** — all in one place.
+
 ---
 
 ## 🚀 Features
