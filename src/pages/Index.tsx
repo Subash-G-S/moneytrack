@@ -10,6 +10,7 @@ import { useToast } from "@/hooks/use-toast";
 import { useAuth } from "@/hooks/use-auth";
 import { Button } from "@/components/ui/button";
 import { db } from "@/lib/firebase";
+import { Loader } from "@/components/Loader";
 
 import {
   addDoc,
@@ -139,7 +140,7 @@ useEffect(() => {
   const balance = totalIncome - totalExpenses;
 
   if (loading) {
-    return <p className="text-center mt-40">Loading...</p>;
+    return <Loader/>
   }
 
   return (
