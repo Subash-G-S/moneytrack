@@ -189,7 +189,6 @@ useEffect(() => {
   {isDark ? "🌙" : "☀️"}
 </button>
 
-
         <Button variant="outline" size="sm" onClick={logout}>
           Sign out
         </Button>
