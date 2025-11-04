@@ -21,6 +21,7 @@ export const TransactionChart = ({ totalIncome, totalExpenses }: TransactionChar
 
   const COLORS = ['hsl(var(--income))', 'hsl(var(--expense))'];
 
+  
   return (
     <div className="h-[300px] w-full">
       <ResponsiveContainer width="100%" height="100%">
