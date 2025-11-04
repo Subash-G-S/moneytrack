@@ -16,7 +16,6 @@ interface DashboardProps {
     date: string;
   }>;
 }
-
 export const Dashboard = ({
   totalIncome,
   totalExpenses,
