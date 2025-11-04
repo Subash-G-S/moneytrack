@@ -181,6 +181,7 @@ export const Reports = ({ transactions }: ReportsProps) => {
               </Popover>
             </div>
 
+
             {/* Category */}
             <div className="space-y-2">
               <Label>Category</Label>
