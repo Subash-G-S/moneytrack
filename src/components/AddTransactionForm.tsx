@@ -137,3 +137,4 @@ export const AddTransactionForm = ({ onAddTransaction }: AddTransactionFormProps
     </Card>
   );
 };
+
