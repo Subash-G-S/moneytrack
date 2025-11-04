@@ -160,7 +160,6 @@ useEffect(() => {
           <p className="text-xs sm:text-sm text-muted-foreground">Manage your finances</p>
         </div>
       </div>
-
       {/* Balance, Toggle & Sign Out */}
       <div className="flex items-center justify-between sm:justify-end gap-3 text-sm text-muted-foreground">
         <span>
